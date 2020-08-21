@@ -21,7 +21,7 @@ const Model = ({children, id, visible, handleOk, handleCancel, onCheck ,color}) 
       }
       visible={visible}
       id={id}
-      footer={<Checkbox checked={true} className="ml-5" >Checkbox</Checkbox>}
+      footer={<Checkbox onChange={onCheck} className="ml-5" >Only Even</Checkbox>}
     >
      {children}
     </Modal>
