@@ -1,1 +1,1 @@
-export const AUTH='AUTH';
+export const CONTACTS='CONTACTS';
