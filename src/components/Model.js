@@ -8,8 +8,8 @@ const Model = ({children, id, visible, handleOk, handleCancel, onCheck ,color}) 
     <Modal
       title={
         <p className="text-center">
-          <Button style={{backgroundColor:' #46139f'}} id='1' onClick={handleOk} >All Contacts</Button>
-          <Button id='2' style={{backgroundColor:' #ff7f50'}} onClick={handleOk} >US Contacts</Button>
+          <Button style={{backgroundColor:color}} id='1' onClick={handleOk} >All Contacts</Button>
+          <Button id='2' style={{backgroundColor:color}} onClick={handleOk} >US Contacts</Button>
           <Button id='3' onClick={handleCancel}>Close</Button>
           <br/>
           <Search
