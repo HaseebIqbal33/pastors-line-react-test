@@ -13,7 +13,9 @@ class Home extends Component {
       modelA: false,
       modelB:false,
       modelC:false,
+      dataModelC:null,
       cId:null,
+      isEven:false
     };
   }
   handleOk = (e) => {
@@ -50,8 +52,7 @@ class Home extends Component {
     this.props.getContacts()
   }
 clickOnRow=(row,index)=>{
-  console.log(row,index)
-  this.setState({modelC:true})
+ this.setState({modelC:true,dataModelC:row})
 }
 handleOkClickOnRow=(e)=>{
   this.setState({modelC:false})
@@ -59,6 +60,7 @@ handleOkClickOnRow=(e)=>{
   render() {
    
     return (
+ 
      <Row justify="space-around" align="middle">
       <Col span={12} offset={11}>
           <Model
@@ -82,7 +84,7 @@ handleOkClickOnRow=(e)=>{
         >
            <Scrollbars
                 style={{ height:550}}>
-                <CustomTable data={this.props.data.usContacts}/>
+                <CustomTable data={this.props.data.usContacts} />
             </Scrollbars>
 
         </Model>
@@ -91,7 +93,9 @@ handleOkClickOnRow=(e)=>{
           handleOk={this.handleOkClickOnRow}
           handleCancel={null}
           id="3"
-        />
+        >
+          {this.state.dataModelC?<div><span>{this.state.dataModelC.key}</span><span>{this.state.dataModelC.name}</span></div>:null}
+        </InfoModel>
       </Col>
       <Row justify="space-around" align="middle">
       <Col span={4}>
