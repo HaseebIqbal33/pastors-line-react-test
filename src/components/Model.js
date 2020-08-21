@@ -10,7 +10,7 @@ const Model = ({children, id, visible, handleOk, handleCancel, onCheck ,color}) 
         <p className="text-center">
           <Button style={{backgroundColor:color}} id='1' onClick={handleOk} >All Contacts</Button>
           <Button id='2' style={{backgroundColor:color}} onClick={handleOk} >US Contacts</Button>
-          <Button id='3'style={{borderColor:'#46139f'}} onClick={handleCancel}>Close</Button>
+          <Button id='3'style={{borderColor:'#46139f',}} onClick={handleCancel}>Close</Button>
           <br/>
           <Search
       placeholder="input search text"
@@ -28,3 +28,15 @@ const Model = ({children, id, visible, handleOk, handleCancel, onCheck ,color}) 
   );
 };
 export default Model;
+
+export const InfoModel=({visible,id,children,handleOk})=>{
+  return (
+    <Modal
+     onOk={handleOk}
+      visible={visible}
+      id={id}
+    >
+     {children}
+    </Modal>
+  );
+}

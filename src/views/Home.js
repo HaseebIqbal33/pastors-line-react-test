@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button,Row, Col,Table, Radio, Divider } from "antd";
-import Model from "../components/Model";
+import Model,{InfoModel} from "../components/Model";
 import { connect } from 'react-redux'; 
 import { getContacts  } from '../redux/actions/contacts';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -12,6 +12,7 @@ class Home extends Component {
     this.state = {
       modelA: false,
       modelB:false,
+      modelC:false,
       cId:null,
     };
   }
@@ -48,6 +49,12 @@ class Home extends Component {
   componentDidMount(){
     this.props.getContacts()
   }
+clickOnRow=(e)=>{
+  this.setState({modelC:true})
+}
+handleOkClickOnRow=(e)=>{
+  this.setState({modelC:false})
+}
   render() {
    
     return (
@@ -62,7 +69,7 @@ class Home extends Component {
         >
             <Scrollbars
                 style={{ height:550 }}>
-                <CustomTable data={this.props.data.contacts}/>
+                <CustomTable data={this.props.data.contacts} clickOnRow={this.clickOnRow}/>
             </Scrollbars>
         </Model>
          <Model
@@ -78,7 +85,12 @@ class Home extends Component {
             </Scrollbars>
 
         </Model>
-        
+        <InfoModel
+          visible={this.state.modelC}
+          handleOk={this.handleOkClickOnRow}
+          handleCancel={null}
+          id="3"
+        />
       </Col>
       <Row justify="space-around" align="middle">
       <Col span={4}>

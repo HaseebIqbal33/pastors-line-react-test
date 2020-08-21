@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Button,Row, Col,Table, Radio, Divider } from "antd";
+import { Button,Row, Col,Table, Radio, Divider, Select } from "antd";
 import { connect } from 'react-redux';
 const columns = [
     {
@@ -15,7 +15,9 @@ const columns = [
       dataIndex: 'country',
     },
   ];
-const CustomTable=({data})=> {
+
+
+const CustomTable=({data,clickOnRow})=> {
     let contacts=[]
     data.map((contact=>{
         let temp={}
@@ -27,6 +29,12 @@ const CustomTable=({data})=> {
     return (
         <Fragment>
             <Table
+             onRow={(record, rowIndex) => {
+              return {
+                onClick:clickOnRow
+              };
+            }}
+                   
                    columns={columns}
                    dataSource={contacts}
                   />
