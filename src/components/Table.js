@@ -2,6 +2,10 @@ import React, { Fragment } from 'react'
 import { Button,Row, Col,Table, Radio, Divider, Select } from "antd";
 import { connect } from 'react-redux';
 const columns = [
+  {
+    title: 'id',
+    dataIndex: 'key',
+  },
     {
       title: 'Name',
       dataIndex: 'name',
@@ -21,6 +25,7 @@ const CustomTable=({data,clickOnRow})=> {
     let contacts=[]
     data.map((contact=>{
         let temp={}
+            temp.key=contact.id;
             temp.name=contact.first_name || "no name";
             temp.phone=contact.phone_number;
             temp.country=contact.country.iso;
@@ -31,7 +36,7 @@ const CustomTable=({data,clickOnRow})=> {
             <Table
              onRow={(record, rowIndex) => {
               return {
-                onClick:clickOnRow
+                onClick:() =>clickOnRow(record,rowIndex)
               };
             }}
                    

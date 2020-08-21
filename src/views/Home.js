@@ -49,7 +49,8 @@ class Home extends Component {
   componentDidMount(){
     this.props.getContacts()
   }
-clickOnRow=(e)=>{
+clickOnRow=(row,index)=>{
+  console.log(row,index)
   this.setState({modelC:true})
 }
 handleOkClickOnRow=(e)=>{
