@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import { Button,Row, Col,Table, Radio, Divider, Select } from "antd";
-import { connect } from 'react-redux';
+import {Table, } from "antd";
+
 const columns = [
   {
     title: 'id',
@@ -20,10 +20,8 @@ const columns = [
     },
   ];
 
-
 const CustomTable=({data,clickOnRow})=> {
     let contacts=[]
-    console.log(data)
     data.map((contact=>{
         let temp={}
             temp.key=contact.id;
@@ -35,12 +33,13 @@ const CustomTable=({data,clickOnRow})=> {
     return (
         <Fragment>
             <Table
+            pagination={{ pageSize: data.length }}         
+            pagination={false}
              onRow={(record, rowIndex) => {
               return {
                 onClick:() =>clickOnRow(record,rowIndex)
               };
             }}
-                   
                    columns={columns}
                    dataSource={contacts}
                   />

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Row, Col, Table, Radio, Divider } from "antd";
+import { Button, Row, Col } from "antd";
 import Model, { InfoModel } from "../components/Model";
 import { connect } from "react-redux";
 import { getContacts } from "../redux/actions/contacts";
@@ -22,7 +22,7 @@ class Home extends Component {
       serchValue: [],
     };
   }
-  handleOk = (e) => {
+  switchModel = (e) => {
     const { id } = e.currentTarget;
     if (id == 2) {
       this.props.history.push("model2");
@@ -32,7 +32,7 @@ class Home extends Component {
       this.setState({ modelA: true, modelB: false, cId: 1 });
     }
   };
-  handleCancel = (e) => {
+  closeModel= (e) => {
     const id = this.state.cId;
     if (id == 1 && this.state.modelB) {
       this.setState({ modelA: false, cId: 2 });
@@ -96,8 +96,8 @@ class Home extends Component {
         <Col span={12} offset={11}>
           <Model
             visible={this.state.modelA}
-            handleOk={this.handleOk}
-            handleCancel={this.handleCancel}
+            handleOk={this.switchModel}
+            handleCancel={this.closeModel}
             onCheck={this.onCheck}
             id="1"
             color="#46139f"
@@ -105,7 +105,7 @@ class Home extends Component {
             onChangeSearch={this.onChangeSearch}
             serchValue={this.state.search}
           >
-            <Scrollbars style={{ height: 550 }}>
+            <Scrollbars style={{ height: 300 }}>
               <CustomTable
                 data={
                   this.state.serchValue.length > 0 ?
@@ -123,8 +123,8 @@ class Home extends Component {
           </Model>
           <Model
             visible={this.state.modelB}
-            handleOk={this.handleOk}
-            handleCancel={this.handleCancel}
+            handleOk={this.switchModel}
+            handleCancel={this.closeModel}
             onCheck={this.onCheck}
             color="#ff7f50"
             id="2"
@@ -132,7 +132,7 @@ class Home extends Component {
             onChangeSearch={this.onChangeSearch}
             serchValue={this.state.search}
           >
-            <Scrollbars style={{ height: 550 }}>
+            <Scrollbars style={{ height: 300 }}>
               <CustomTable
                 data={
                   this.state.serchValue.length > 0 ?

@@ -1,13 +1,13 @@
 import React from "react";
 import { Modal, Button ,Checkbox,Input} from "antd";
 const { Search } = Input;
-const Model = ({children, id, visible, handleOk, handleCancel, onCheck ,color,onSearch,onChangeSearch,serch}) => {
+const Model = ({children, id, visible, handleOk, handleCancel, onCheck ,onSearch,onChangeSearch,serch}) => {
   return (
     <Modal
       title={
         <p className="text-center">
-          <Button style={{backgroundColor:color}} id='1' onClick={handleOk} >All Contacts</Button>
-          <Button id='2' style={{backgroundColor:color}} onClick={handleOk} >US Contacts</Button>
+          <Button style={{backgroundColor:" #46139f"}} id='1' onClick={handleOk} >All Contacts</Button>
+          <Button id='2' style={{backgroundColor:"#ff7f50"}} onClick={handleOk} >US Contacts</Button>
           <Button id='3'style={{borderColor:'#46139f',}} onClick={handleCancel}>Close</Button>
           <br/>
           <br/>
