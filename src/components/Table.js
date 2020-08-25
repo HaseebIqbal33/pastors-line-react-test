@@ -23,6 +23,7 @@ const columns = [
 
 const CustomTable=({data,clickOnRow})=> {
     let contacts=[]
+    console.log(data)
     data.map((contact=>{
         let temp={}
             temp.key=contact.id;

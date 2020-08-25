@@ -6,7 +6,7 @@ import { getContacts } from "../redux/actions/contacts";
 import { Scrollbars } from "react-custom-scrollbars";
 import CustomTable from "../components/Table";
 import { withRouter } from "react-router-dom";
-
+import { Axios } from "../utils/axios";
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +17,8 @@ class Home extends Component {
       dataModelC: null,
       cId: null,
       onCheck: false,
+      search: null,
+      serchValue: [],
     };
   }
   handleOk = (e) => {
@@ -67,8 +69,25 @@ class Home extends Component {
       this.setState({ onCheck: true });
     }
   };
+  onSearch = (e) => {
+    Axios.get(`contacts.json?companyId=171&query=${this.state.search}`)
+      .then((res) => {
+        let temp = [];
+        for (const key in res.data.contacts) {
+          temp.push(res.data.contacts[key]);
+        }
+        this.setState({ serchValue: temp });
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
+  onChangeSearch = (e) => {
+    this.setState({ search: e.target.value, serchValue: [] });
+  };
   render() {
     const { onCheck } = this.state;
+    console.log(this.state.serchValue.length);
     return (
       <Row justify="space-around" align="middle">
         <Col span={12} offset={11}>
@@ -79,12 +98,17 @@ class Home extends Component {
             onCheck={this.onCheck}
             id="1"
             color="#46139f"
+            onSearch={this.onSearch}
+            onChangeSearch={this.onChangeSearch}
+            serchValue={this.state.search}
           >
             <Scrollbars style={{ height: 550 }}>
               <CustomTable
                 data={
-                  onCheck
-                    ? this.props.data.evenIdContacts
+                  this.state.serchValue.length > 0
+                    ? this.state.serchValue
+                    : onCheck
+                    ? this.state.serchValue
                     : this.props.data.contacts
                 }
                 clickOnRow={this.clickOnRow}
@@ -98,11 +122,16 @@ class Home extends Component {
             onCheck={this.onCheck}
             color="#ff7f50"
             id="2"
+            onSearch={this.onSearch}
+            onChangeSearch={this.onChangeSearch}
+            serchValue={this.state.search}
           >
             <Scrollbars style={{ height: 550 }}>
               <CustomTable
                 data={
-                  onCheck
+                  this.state.serchValue.length > 0
+                    ? this.state.serchValue
+                    : onCheck
                     ? this.props.data.usEvenIdContacts
                     : this.props.data.usContacts
                 }

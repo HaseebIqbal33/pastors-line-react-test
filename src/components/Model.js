@@ -1,9 +1,7 @@
 import React from "react";
-import { Modal, Button } from "antd";
-import { Checkbox } from "antd";
-import { Input } from 'antd';
+import { Modal, Button ,Checkbox,Input} from "antd";
 const { Search } = Input;
-const Model = ({children, id, visible, handleOk, handleCancel, onCheck ,color}) => {
+const Model = ({children, id, visible, handleOk, handleCancel, onCheck ,color,onSearch,onChangeSearch,serch}) => {
   return (
     <Modal
       title={
@@ -12,9 +10,12 @@ const Model = ({children, id, visible, handleOk, handleCancel, onCheck ,color}) 
           <Button id='2' style={{backgroundColor:color}} onClick={handleOk} >US Contacts</Button>
           <Button id='3'style={{borderColor:'#46139f',}} onClick={handleCancel}>Close</Button>
           <br/>
+          <br/>
           <Search
-      placeholder="input search text"
-      onSearch={value => console.log(value)}
+      placeholder="Enter name or phone "
+      onSearch={onSearch}
+      onChange={onChangeSearch}
+      value={serch}
       style={{ width: 200 }}
     />
         </p>
