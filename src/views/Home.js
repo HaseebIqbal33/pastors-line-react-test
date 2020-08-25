@@ -7,6 +7,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import CustomTable from "../components/Table";
 import { withRouter } from "react-router-dom";
 import { Axios } from "../utils/axios";
+import { getEven } from "../utils/filter";
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -63,6 +64,7 @@ class Home extends Component {
     this.setState({ modelC: false });
   };
   onCheck = () => {
+    console.log("Click is called")
     if (this.state.onCheck) {
       this.setState({ onCheck: false });
     } else {
@@ -83,6 +85,7 @@ class Home extends Component {
       });
   };
   onChangeSearch = (e) => {
+    getEven(this.props.data.contacts);
     this.setState({ search: e.target.value, serchValue: [] });
   };
   render() {
@@ -105,11 +108,14 @@ class Home extends Component {
             <Scrollbars style={{ height: 550 }}>
               <CustomTable
                 data={
-                  this.state.serchValue.length > 0
-                    ? this.state.serchValue
-                    : onCheck
-                    ? this.state.serchValue
-                    : this.props.data.contacts
+                  this.state.serchValue.length > 0 ?
+                  onCheck== true?
+                  getEven(this.state.serchValue):
+                  this.state.serchValue:
+                  onCheck== true?
+                  getEven(this.props.data.contacts):
+                  this.props.data.contacts
+                 
                 }
                 clickOnRow={this.clickOnRow}
               />
@@ -129,12 +135,15 @@ class Home extends Component {
             <Scrollbars style={{ height: 550 }}>
               <CustomTable
                 data={
-                  this.state.serchValue.length > 0
-                    ? this.state.serchValue
-                    : onCheck
-                    ? this.props.data.usEvenIdContacts
-                    : this.props.data.usContacts
+                  this.state.serchValue.length > 0 ?
+                  onCheck== true?
+                  getEven(this.state.serchValue):
+                  this.state.serchValue:
+                  onCheck== true?
+                  getEven(this.props.data.usContacts):
+                  this.props.data.usContacts
                 }
+                clickOnRow={this.clickOnRow}
               />
             </Scrollbars>
           </Model>
